@@ -1,6 +1,11 @@
 import static spark.Spark.*;
 
 import spark.*;
+import spark.template.freemarker.FreeMarkerRoute;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Main {
 
@@ -28,5 +33,16 @@ public class Main {
                 return "Listen, " + request.splat()[1] + ": " + request.splat()[0] + "!";
             }
         });
+
+        get(new FreeMarkerRoute("/test") {
+            @Override
+            public Object handle(Request request, Response response) {
+                Map<String, Object> attributes = new HashMap<String, Object>();
+                attributes.put("user", "Fabricio");
+                return modelAndView(attributes, "test.ftl");
+            }
+        });
+
+
     }
 }
