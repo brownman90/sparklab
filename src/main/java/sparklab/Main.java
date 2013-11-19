@@ -1,3 +1,5 @@
+package sparklab;
+
 import static spark.Spark.*;
 
 import spark.*;
